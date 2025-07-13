@@ -1,0 +1,2 @@
+PAYLOAD_SECRET=jawliejfilwajefSEANlawefawfewag349jwgo3gj4w
+MONGODB_URI=mongodb+srv://vobhi2025:KSbATQY0bfShqZV7@cluster0.l0ckvhx.mongodb.net/vobhicmsdb
