@@ -2,7 +2,9 @@ import { CollectionConfig } from 'payload'
 
 const Users: CollectionConfig = {
   slug: 'users',
-  auth: true,
+  auth: {
+    useAPIKey: true,
+  },
   access: {
     delete: () => false,
     update: () => true,

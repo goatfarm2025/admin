@@ -115,6 +115,9 @@ export interface User {
   role: 'admin' | 'customer' | 'manager' | 'visitor';
   updatedAt: string;
   createdAt: string;
+  enableAPIKey?: boolean | null;
+  apiKey?: string | null;
+  apiKeyIndex?: string | null;
   email: string;
   resetPasswordToken?: string | null;
   resetPasswordExpiration?: string | null;
