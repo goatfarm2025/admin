@@ -11,9 +11,11 @@ export interface Config {
     users: UserAuthOperations;
   };
   collections: {
+    goats: Goat;
     users: User;
     pages: Page;
     media: Media;
+    profile: Profile;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -44,6 +46,49 @@ export interface UserAuthOperations {
     email: string;
     password: string;
   };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "goats".
+ */
+export interface Goat {
+  id: string;
+  image?: (string | null) | Media;
+  idno: string;
+  breed?: string | null;
+  age?: number | null;
+  description?: string | null;
+  purchasePrice?: number | null;
+  caretaker?: (string | null) | User;
+  owner?: (string | null) | User;
+  farmLocation?: {
+    street?: string | null;
+    city?: string | null;
+    state?: string | null;
+    postalCode?: string | null;
+    country?: string | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: string;
+  text?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -89,22 +134,23 @@ export interface Page {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
+ * via the `definition` "profile".
  */
-export interface Media {
+export interface Profile {
   id: string;
-  text?: string | null;
+  fullName: string;
+  bio?: string | null;
+  avatar?: (string | null) | Media;
+  address?: {
+    street?: string | null;
+    city?: string | null;
+    state?: string | null;
+    postalCode?: string | null;
+    country?: string | null;
+  };
+  user: string | User;
   updatedAt: string;
   createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -113,6 +159,10 @@ export interface Media {
 export interface PayloadLockedDocument {
   id: string;
   document?:
+    | ({
+        relationTo: 'goats';
+        value: string | Goat;
+      } | null)
     | ({
         relationTo: 'users';
         value: string | User;
@@ -124,6 +174,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: string | Media;
+      } | null)
+    | ({
+        relationTo: 'profile';
+        value: string | Profile;
       } | null);
   globalSlug?: string | null;
   user: {
