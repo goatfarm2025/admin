@@ -28,6 +28,7 @@ import Goat from './src/collections/Goat'
 import Media from './src/collections/Media'
 import Users from './src/collections/Users'
 import Pages from './src/collections/Pages'
+import GoatHealthRecord from './src/collections/GoatHealthRecord'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -35,7 +36,7 @@ const dirname = path.dirname(filename)
 export default buildConfig({
   //editor: slateEditor({}),
   editor: lexicalEditor(),
-  collections: [Goat, Users, Pages, Media, Profile],
+  collections: [GoatHealthRecord, Goat, Users, Pages, Media, Profile],
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),

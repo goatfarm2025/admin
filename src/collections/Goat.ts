@@ -13,11 +13,6 @@ const Goat: CollectionConfig = {
       name: 'image',
       type: 'upload',
       relationTo: 'media',
-      admin: {
-        components: {
-          Cell: GoatImageCell,
-        },
-      },
     },
     {
       name: 'idno',

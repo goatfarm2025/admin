@@ -11,6 +11,7 @@ export interface Config {
     users: UserAuthOperations;
   };
   collections: {
+    'goat-health-records': GoatHealthRecord;
     goats: Goat;
     users: User;
     pages: Page;
@@ -46,6 +47,20 @@ export interface UserAuthOperations {
     email: string;
     password: string;
   };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "goat-health-records".
+ */
+export interface GoatHealthRecord {
+  id: string;
+  goat: string | Goat;
+  date: string;
+  weight: number;
+  photo?: (string | null) | Media;
+  notes?: string | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -159,6 +174,10 @@ export interface Profile {
 export interface PayloadLockedDocument {
   id: string;
   document?:
+    | ({
+        relationTo: 'goat-health-records';
+        value: string | GoatHealthRecord;
+      } | null)
     | ({
         relationTo: 'goats';
         value: string | Goat;
