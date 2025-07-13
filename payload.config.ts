@@ -29,6 +29,7 @@ import Media from './src/collections/Media'
 import Users from './src/collections/Users'
 import Pages from './src/collections/Pages'
 import GoatHealthRecord from './src/collections/GoatHealthRecord'
+import Bills from './src/collections/Bills'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -36,7 +37,7 @@ const dirname = path.dirname(filename)
 export default buildConfig({
   //editor: slateEditor({}),
   editor: lexicalEditor(),
-  collections: [GoatHealthRecord, Goat, Users, Pages, Media, Profile],
+  collections: [GoatHealthRecord, Goat, Users, Pages, Media, Profile, Bills],
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
@@ -77,6 +78,15 @@ export default buildConfig({
         data: {
           email: 'dev@payloadcms.com',
           password: 'test',
+          role: 'admin',
+        },
+      })
+      await payload.create({
+        collection: 'users',
+        data: {
+          email: 'manager@payloadcms.com',
+          password: 'test',
+          role: 'manager',
         },
       })
     }

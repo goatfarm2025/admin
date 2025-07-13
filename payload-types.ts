@@ -17,6 +17,7 @@ export interface Config {
     pages: Page;
     media: Media;
     profile: Profile;
+    bills: Bill;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -111,6 +112,7 @@ export interface Media {
  */
 export interface User {
   id: string;
+  role: 'admin' | 'customer' | 'manager' | 'visitor';
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -169,6 +171,21 @@ export interface Profile {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "bills".
+ */
+export interface Bill {
+  id: string;
+  title: string;
+  amount: number;
+  date: string;
+  image?: (string | null) | Media;
+  createdBy: string | User;
+  status: 'pending' | 'approved' | 'rejected' | 'closed';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -197,6 +214,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'profile';
         value: string | Profile;
+      } | null)
+    | ({
+        relationTo: 'bills';
+        value: string | Bill;
       } | null);
   globalSlug?: string | null;
   user: {

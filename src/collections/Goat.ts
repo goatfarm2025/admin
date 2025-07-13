@@ -8,6 +8,10 @@ const Goat: CollectionConfig = {
     listSearchableFields: ['idno', 'breed', 'age'],
     defaultColumns: ['image', 'idno', 'breed', 'age'], // show image preview, not URL
   },
+  access: {
+    create: ({ req: { user } }) => user?.role === 'admin' || user?.role === 'manager',
+    update: ({ req: { user } }) => user?.role === 'admin' || user?.role === 'manager',
+  },
   fields: [
     {
       name: 'image',

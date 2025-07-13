@@ -6,6 +6,10 @@ const GoatHealthRecord: CollectionConfig = {
     useAsTitle: 'date',
     defaultColumns: ['goat', 'date', 'weight', 'photo'],
   },
+  access: {
+    create: ({ req: { user } }) => user?.role === 'admin' || user?.role === 'manager',
+    update: ({ req: { user } }) => user?.role === 'admin' || user?.role === 'manager',
+  },
   fields: [
     {
       name: 'goat',
