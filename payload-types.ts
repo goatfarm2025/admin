@@ -18,6 +18,7 @@ export interface Config {
     media: Media;
     profile: Profile;
     bills: Bill;
+    orders: Order;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -189,6 +190,22 @@ export interface Bill {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "orders".
+ */
+export interface Order {
+  id: string;
+  eventName: string;
+  completed?: boolean | null;
+  deliveryDate: string;
+  orderId: string;
+  livestock: string;
+  status: 'pending' | 'processing' | 'shipped' | 'delivered' | 'cancelled' | 'refunded';
+  user: string | User;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -221,6 +238,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'bills';
         value: string | Bill;
+      } | null)
+    | ({
+        relationTo: 'orders';
+        value: string | Order;
       } | null);
   globalSlug?: string | null;
   user: {

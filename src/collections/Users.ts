@@ -5,6 +5,9 @@ const Users: CollectionConfig = {
   auth: {
     useAPIKey: true,
   },
+  admin: {
+    useAsTitle: 'email',
+  },
   access: {
     delete: () => false,
     update: () => true,
