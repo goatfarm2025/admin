@@ -34,11 +34,16 @@ const RazorpayOrders: CollectionConfig = {
       },
     },
     {
-      name: 'order',
-      type: 'relationship',
-      relationTo: 'orders',
-      required: true,
-      label: 'Related Order',
+      name: 'orderlist',
+      type: 'array',
+      fields: [
+        {
+          name: 'order',
+          type: 'relationship',
+          relationTo: 'orders',
+          label: 'Related Order',
+        },
+      ],
     },
     {
       name: 'user',
