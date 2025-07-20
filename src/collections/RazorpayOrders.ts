@@ -76,6 +76,7 @@ const RazorpayOrders: CollectionConfig = {
       options: [
         { label: 'Created', value: 'created' },
         { label: 'Authorized', value: 'authorized' },
+        { label: 'Captured', value: 'captured' },
         { label: 'Attempted', value: 'attempted' },
         { label: 'Paid', value: 'paid' },
         { label: 'Failed', value: 'failed' },
