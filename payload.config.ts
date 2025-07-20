@@ -31,6 +31,7 @@ import Pages from './src/collections/Pages'
 import GoatHealthRecord from './src/collections/GoatHealthRecord'
 import Bills from './src/collections/Bills'
 import Orders from './src/collections/Orders'
+import RazorpayOrders from './src/collections/RazorpayOrders'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -38,7 +39,17 @@ const dirname = path.dirname(filename)
 export default buildConfig({
   //editor: slateEditor({}),
   editor: lexicalEditor(),
-  collections: [GoatHealthRecord, Goat, Users, Pages, Media, Profile, Bills, Orders],
+  collections: [
+    GoatHealthRecord,
+    Goat,
+    Users,
+    Pages,
+    Media,
+    Profile,
+    Bills,
+    Orders,
+    RazorpayOrders,
+  ],
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
