@@ -32,6 +32,7 @@ import GoatHealthRecord from './src/collections/GoatHealthRecord'
 import Bills from './src/collections/Bills'
 import Orders from './src/collections/Orders'
 import RazorpayOrders from './src/collections/RazorpayOrders'
+import Testimonials from './src/collections/Testimonials'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -49,6 +50,7 @@ export default buildConfig({
     Bills,
     Orders,
     RazorpayOrders,
+    Testimonials,
   ],
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
