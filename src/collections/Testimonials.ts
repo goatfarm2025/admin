@@ -8,11 +8,10 @@ const Testimonials: CollectionConfig = {
   },
   fields: [
     {
-      name: 'user',
-      type: 'relationship',
-      relationTo: 'users',
+      name: 'email',
+      type: 'text',
       required: true,
-      label: 'User',
+      label: 'email',
     },
     {
       name: 'testimonial',
